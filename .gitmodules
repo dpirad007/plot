@@ -1,0 +1,6 @@
+[submodule "dependencies/linalg"]
+	path = dependencies/linalg
+	url = https://github.com/ml-wasm/linalg.git
+[submodule "dependencies/entropy"]
+	path = dependencies/entropy
+	url = https://github.com/ml-wasm/entropy.git
