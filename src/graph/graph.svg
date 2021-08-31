@@ -1,0 +1,21 @@
+<?xml version="1.0" standalone="no"?>
+<svg
+  width="100%"
+  height="100%"
+  viewBox="0 0 {{height + padding * 2}} {{width + padding * 2}}"
+  preserveAspectRatio="xMidYMid meet"
+  xmlns="http://www.w3.org/2000/svg"
+  >
+  <text 
+    x="{{width/2 + padding}}"
+    y="{{padding / 2}}"
+    font-family="-apple-system, system-ui, BlinkMacSystemFont, Roboto"
+    dominant-baseline="middle"
+    text-anchor="middle"
+    font-size="18"
+    fill={{color}}
+    font-weight="700"
+    >
+    {{name}}
+  </text>
+</svg>
