@@ -1,0 +1,3 @@
+[submodule "dependencies/entropy"]
+	path = dependencies/entropy
+	url = https://github.com/ml-wasm/entropy.git
