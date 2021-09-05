@@ -135,36 +135,3 @@ pub async fn fit_draw(
     let out = graph.draw_svg(width, height, padding, path);
     out
 }
-
-// #[wasm_bindgen(js_name = readcsv)]
-// pub async fn read_csv(data: web_sys::File) -> js_sys::Array {
-//     let jsdata = wasm_bindgen_futures::JsFuture::from(data.text())
-//         .await
-//         .unwrap_throw();
-
-//     let jsdatas = jsdata.as_string().unwrap_throw();
-
-//     let mut reader = csv::Reader::from_reader(jsdatas.as_bytes());
-
-//     let data = js_sys::Array::new();
-//     for record in reader.records() {
-//         for field in record.unwrap().iter() {
-//             let as_int = field.parse::<i32>();
-
-//             if let Ok(x) = as_int {
-//                 let val = serde_wasm_bindgen::to_value(&x).unwrap();
-//                 data.push(&val);
-//                 continue;
-//             }
-
-//             let as_float = field.parse::<f64>();
-
-//             if let Ok(x) = as_float {
-//                 let val = serde_wasm_bindgen::to_value(&x).unwrap();
-//                 data.push(&val);
-//                 continue;
-//             }
-//         }
-//     }
-//     return data;
-// }
