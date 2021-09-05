@@ -5,7 +5,7 @@ pub struct Graph {
     pub name: String,
     pub size: usize,
     pub points: Vec<Point>,
-    pub colour: String,
+    pub color: String,
     pub x_range: f64,
     pub y_range: f64,
     pub x_min: f64,

@@ -6,12 +6,12 @@ use tera::{Context, Tera};
 use wasm_bindgen::prelude::*;
 
 impl Graph {
-    pub fn new(name: String, colour: String) -> Self {
+    pub fn new(name: String, color: String) -> Self {
         Graph {
             name,
             size: 0,
             points: Vec::new(),
-            colour,
+            color,
             x_range: 0.,
             y_range: 0.,
             x_min: 0.,
@@ -39,7 +39,6 @@ impl Graph {
         }
 
         //ensure the viewbox is as per input
-
         context.insert("name", &self.name);
         context.insert("width", &width);
         context.insert("height", &height);
@@ -50,7 +49,7 @@ impl Graph {
         context.insert("y_range", &self.y_range);
         context.insert("x_min", &self.x_min);
         context.insert("y_min", &self.y_min);
-        context.insert("colour", &self.colour);
+        context.insert("color", &self.color);
         context.insert("lines", &10);
 
         Tera::one_off(include_str!("scatter.svg"), &context, true).expect("Could not draw graph")

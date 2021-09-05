@@ -3,11 +3,19 @@ import init, { plotScatter, plotLine } from "../pkg/plot.js";
 (async () => {
   await init();
 
-  let file = await fetch("../data/erupt.csv");
+  let scatterfile = await fetch("../data/faithful.csv");
 
-  let scatter = await plotScatter(file, "Dion", 800, 400, 50);
+  let linefile = await fetch("../data/line.csv");
 
-  let line = await plotLine("Line Chart", "#35fcf6");
+  let scatter = await plotScatter(
+    scatterfile,
+    "Faithful Dataset",
+    800,
+    400,
+    50
+  );
+
+  // let line = await plotLine(linefile, "Line Chart");
 
   document.getElementById("container").innerHTML = scatter;
 })();

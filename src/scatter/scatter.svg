@@ -62,7 +62,7 @@
   {% for point in path %}
   {% set x = point.0 %}
   {% set y = point.1 %}
-  <g stroke="{{colour}}" stroke-width="2" fill="{{colour}}">
+  <g stroke="{{color}}" stroke-width="2" fill="{{color}}">
     <circle cx="{{x}}" cy="{{y}}" r="2" />
   </g>
   {% endfor %}

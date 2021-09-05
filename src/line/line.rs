@@ -1,5 +1,5 @@
 use super::{Graph, Point};
-// use crate::read_csv_rust;
+use crate::read_csv_rust;
 use tera::{Context, Tera};
 use wasm_bindgen::prelude::*;
 
@@ -9,6 +9,7 @@ impl Graph {
             name,
             points: Vec::new(),
             color,
+            size: 0,
         }
     }
 
@@ -76,22 +77,36 @@ impl Graph {
     }
 }
 
-pub fn generate_graph(chart_name: String, chart_color: String) -> Graph {
-    let mut graph = Graph::new(chart_name.into(), chart_color.into());
-    graph.add_point(0.0, 0.0);
-    graph.add_point(2.0, 3.0);
-    graph.add_point(3.0, 2.5);
-    graph.add_point(4.0, 6.0);
-    graph.add_point(5.0, 3.0);
+pub fn generate_graph(title: String, data: Vec<f64>) -> Graph {
+    let mut xs: Vec<f64> = Vec::new();
+    let mut ys: Vec<f64> = Vec::new();
+    let mut tuples: Vec<(f64, f64)> = Vec::new();
+
+    for i in 0..data.len() {
+        if (i % 2) == 1 {
+            tuples.push((data[i - 1], data[i]));
+        }
+    }
+
+    for i in 0..tuples.len() {
+        xs.push(tuples[i].0);
+        ys.push(tuples[i].1);
+    }
+
+    let mut graph = Graph::new(title.into(), "#35fcf6".into());
+    graph.size = xs.len();
+    for i in 0..graph.size {
+        graph.add_point(xs[i], ys[i]);
+    }
+
     graph
 }
 
 #[wasm_bindgen(js_name = plotLine)]
-pub fn display_graph(name: JsValue, color: JsValue) -> String {
-    let chart_name = serde_wasm_bindgen::from_value(name).unwrap();
-    let chart_color = serde_wasm_bindgen::from_value(color).unwrap();
-
-    let graph = generate_graph(chart_name, chart_color);
+pub async fn fit_draw(csv_data: web_sys::File, title: JsValue) -> String {
+    let chart_name = serde_wasm_bindgen::from_value(title).unwrap();
+    let data: Vec<f64> = read_csv_rust(csv_data).await;
+    let graph = generate_graph(chart_name, data);
 
     graph.draw_svg(800, 400, 700, 250)
 }
