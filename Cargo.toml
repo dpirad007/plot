@@ -14,7 +14,7 @@ default = ["console_error_panic_hook"]
 console_error_panic_hook = { version = "0.1.6", optional = true }
 wee_alloc = { version = "0.4.5", optional = true }
 serde-wasm-bindgen = "0.1"
-ndarray = {version = "0.15", features = ["serde"]}
+ndarray = {version = "0.13.0", features = ["serde"]}
 serde = {version = "1.0", features = ["derive"]}
 wasm-bindgen = {version = "0.2", features = ["serde-serialize"]}
 js-sys = "0.3"
@@ -22,11 +22,20 @@ wasm-bindgen-futures = "0.4.22"
 csv = "1.1"
 tera = "1.2.0"
 getrandom = { version = "0.2", features = ["js"] }
+rkm = { git = "https://github.com/second-state/wasm-learning-deps-rkm" }
+rand = "0.7.3"
 entropy = {path = "./dependencies/entropy"}
 
 
+[dependencies.web-sys]
+version = "0.3"
+features = [
+  "File",
+]
+
 [dev-dependencies]
 wasm-bindgen-test = "0.3.13"
+
 
 [profile.release]
 # Tell `rustc` to optimize for small code size.

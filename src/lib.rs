@@ -1,6 +1,27 @@
-mod graph;
-
+mod line;
+mod scatter;
+use std::str::FromStr;
 use wasm_bindgen::prelude::*;
+
+pub async fn read_csv_rust(data: web_sys::File) -> Vec<f64> {
+    let jsdata = wasm_bindgen_futures::JsFuture::from(data.text())
+        .await
+        .unwrap_throw();
+
+    let jsdatas = jsdata.as_string().unwrap_throw();
+
+    let mut reader = csv::Reader::from_reader(jsdatas.as_bytes());
+
+    let mut data = Vec::new();
+    for record in reader.records() {
+        for field in record.unwrap().iter() {
+            let value = f64::from_str(field);
+            data.push(value.unwrap());
+        }
+    }
+
+    return data;
+}
 
 // When the `wee_alloc` feature is enabled, use `wee_alloc` as the global
 // allocator.

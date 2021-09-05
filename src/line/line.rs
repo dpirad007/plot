@@ -1,6 +1,7 @@
 use super::{Graph, Point};
+// use crate::read_csv_rust;
 use tera::{Context, Tera};
-use wasm_bindgen::{prelude::*, JsCast};
+use wasm_bindgen::prelude::*;
 
 impl Graph {
     pub fn new(name: String, color: String) -> Self {
@@ -71,7 +72,7 @@ impl Graph {
         context.insert("path", &path);
         context.insert("lines", &5);
 
-        Tera::one_off(include_str!("graph.svg"), &context, true).expect("Could not draw graph")
+        Tera::one_off(include_str!("line.svg"), &context, true).expect("Could not draw graph")
     }
 }
 
@@ -85,7 +86,7 @@ pub fn generate_graph(chart_name: String, chart_color: String) -> Graph {
     graph
 }
 
-#[wasm_bindgen(js_name = plotGraph)]
+#[wasm_bindgen(js_name = plotLine)]
 pub fn display_graph(name: JsValue, color: JsValue) -> String {
     let chart_name = serde_wasm_bindgen::from_value(name).unwrap();
     let chart_color = serde_wasm_bindgen::from_value(color).unwrap();

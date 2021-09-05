@@ -1,8 +1,13 @@
-import init, { plotGraph } from "../pkg/plot.js";
+import init, { plotScatter, plotLine } from "../pkg/plot.js";
 
 (async () => {
   await init();
-  let graph = plotGraph("Line chart", "#35fcf6");
-  console.log(graph);
-  document.getElementById("container").innerHTML = graph;
+
+  let file = await fetch("../data/erupt.csv");
+
+  let scatter = await plotScatter(file, "Dion", 800, 400, 50);
+
+  let line = await plotLine("Line Chart", "#35fcf6");
+
+  document.getElementById("container").innerHTML = scatter;
 })();

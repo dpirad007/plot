@@ -1,4 +1,4 @@
-mod scatter;
+mod line;
 
 #[derive(Clone, Debug)]
 pub struct Graph {
