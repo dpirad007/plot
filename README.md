@@ -10,6 +10,6 @@
     <a href="https://discordapp.com/channels/442252698964721669/443151097398296587">Chat</a>
   </h3> -->
 
-  <sub>Built with 🦀🕸 by <a href="https://github.com/ml-wasm">ml-wasm</a></sub>
+  <sub>Built with 🦀🕸</sub>
 </div>
 
