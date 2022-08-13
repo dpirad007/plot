@@ -3,6 +3,7 @@ mod scatter;
 use std::str::FromStr;
 use wasm_bindgen::prelude::*;
 
+// Read from csv
 pub async fn read_csv_rust(data: web_sys::File) -> Vec<f64> {
     let jsdata = wasm_bindgen_futures::JsFuture::from(data.text())
         .await
